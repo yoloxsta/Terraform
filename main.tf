@@ -1,9 +1,9 @@
 resource "aws_instance" "web" {
-  ami                    = "ami-06c4be2792f419b7b"      #change ami id for different region
+  ami                    = "***"      #change ami id for different region
   instance_type          = "t2.large"
   key_name               = "sta-key"              #change key name as per your setup
   vpc_security_group_ids = [aws_security_group.Jenkins-VM-SG.id]
-  subnet_id              = "subnet-0175c6f1dd3d2b02e" #change your subnet to be lauch zone
+  subnet_id              = "***" #change your subnet to be lauch zone
   user_data              = templatefile("./install.sh", {})
 
   tags = {
@@ -18,7 +18,7 @@ resource "aws_instance" "web" {
 resource "aws_security_group" "Jenkins-VM-SG" {
   name        = "Jenkins-VM-SG"
   description = "Allow TLS inbound traffic"
-  vpc_id      = "vpc-02e548d0256bac144" #your vpc-id
+  vpc_id      = "***" #your vpc-id
 
   ingress = [
     for port in [22, 80, 443, 8080, 9000, 3000] : {
